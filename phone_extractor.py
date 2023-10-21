@@ -42,7 +42,7 @@ def key_words_around_number(html):
     selected_numbers = utils.create_set_of_numbers(phone_numbers)
     return ", ".join(selected_numbers)
 
-def extract(html, url):
+def extract(html):
     phone_numbers = key_words_around_number(html)
     if not phone_numbers:
         phone_numbers = None
@@ -58,7 +58,5 @@ if __name__ == '__main__':
     for url in urls:
         html = utils.get_html(url.rstrip('/'))  
 
-        phone_numbers = key_words_around_number(html)
-        if not phone_numbers:
-            phone_numbers = None
+        phone_numbers = extract(html)
         print(url + ' >> ' + str(phone_numbers))
