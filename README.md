@@ -3,12 +3,32 @@ Python Web Scraper for Website Logo and Phone Number Extraction
 
 ## Description
 
+This project incorporates  web scraping tool designed to extract essential information from websites, including logos, phone numbers, and fax numbers. This tool simplifies the process of gathering contact details and branding assets from web pages, making it a valuable resource for businesses, researchers, and marketing professionals.
 
-## Usage
+## Key Features
 
-#### Installation via pip
+Logo Extraction: Program automatically detects and extracts logos from web pages, providing url links to logo images.
 
-Python version used in project: 3.6.8.
+Contact Details: Retrieve phone numbers from website content, enabling easy access to contact information for leads and research.
+
+User-Friendly Interface: Program allows users to enter website URLs and obtain the extracted data with a few simple CLI commands.
+
+##  Use Cases
+
+Marketing: Quickly obtain company logos and contact details for potential leads and marketing campaigns.
+
+Research: Simplify data collection for research projects, including market analysis and competitor profiling.
+
+Branding: Access high-resolution logos for branding and design purposes.
+
+## Notable Dependencies
+
+Python 3.6 (3.6.8)
+BeautifulSoup (for web scraping)
+
+## Getting started
+
+### Installation via pip
 
 In terminal navigate to a project directory:
 
@@ -31,10 +51,12 @@ Once the dependencies are installed, you can run the script:
 `python extract.py https://www.illion.com.au/`
 
 
-#### Installation via docker
+### Installation via docker
 
-Build image
+Build image:
+
 `docker build -t extractor-app .`
 
-Run image with url as an argument
+Run image with url as an argument:
+
 `docker run extractor-app https://www.illion.com.au/`
