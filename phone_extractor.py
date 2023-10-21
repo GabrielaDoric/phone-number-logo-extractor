@@ -1,6 +1,4 @@
 import re
-import requests
-from bs4 import BeautifulSoup
 import utils
 
 
@@ -43,6 +41,13 @@ def key_words_around_number(html):
 
     selected_numbers = utils.create_set_of_numbers(phone_numbers)
     return ", ".join(selected_numbers)
+
+def extract(html, url):
+    phone_numbers = key_words_around_number(html)
+    if not phone_numbers:
+        phone_numbers = None
+
+    return phone_numbers
 
 
 if __name__ == '__main__':
