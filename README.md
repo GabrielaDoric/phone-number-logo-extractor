@@ -28,6 +28,8 @@ Once the dependencies are installed, you can run the script:
 
 `python extract.py {valid_website_url}`
 
+`python extract.py https://www.illion.com.au/`
+
 
 #### Installation via docker
 
