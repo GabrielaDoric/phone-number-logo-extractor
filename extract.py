@@ -1,19 +1,10 @@
 import argparse
 import utils
-import logo_extractor as logo
-import phone_extractor as phone
-from Extractor_Logo import Extractor_Logo
-from Extractor_Phone import Extractor_Phone
+from extractors.extractor_logo import Extractor_Logo
+from extractors.extractor_phone import Extractor_Phone
 
 
-def extract(url):
-    html = utils.get_html(url.rstrip('/'))
 
-    logo_url = logo.extract(html, url)
-
-    phone_numbers = phone.extract(html, url)
-
-    return phone_numbers, logo_url
 
 
 if __name__ == '__main__':

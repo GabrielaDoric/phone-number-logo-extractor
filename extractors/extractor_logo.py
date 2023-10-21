@@ -6,7 +6,7 @@ import urllib.parse
 import re
 import utils
 
-from Extractor import Extractor
+from extractors.extractor import Extractor
 
 
 class Extractor_Logo(Extractor):
@@ -130,7 +130,7 @@ class Extractor_Logo(Extractor):
 
 
 def main():
-    with open('companies.txt') as f:
+    with open('../companies.txt') as f:
         urls = [line.rstrip() for line in f if line.strip() != '']
 
     for url in urls:
