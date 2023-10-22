@@ -27,6 +27,11 @@ BeautifulSoup (for web scraping)
 
 ## Getting started
 
+To run the code, first clone or download this repository to your local machine.
+Following instructions are written for running a program on Windows.
+
+
+
 ### Installation via pip
 
 In terminal navigate to a project directory: 
