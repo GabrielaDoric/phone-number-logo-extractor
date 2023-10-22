@@ -11,8 +11,6 @@ Logo Extraction: Program automatically detects and extracts logos from web pages
 
 Contact Details: Retrieve phone numbers from website content, enabling easy access to contact information for leads and research.
 
-User-Friendly Interface: Program allows users to enter website URLs and obtain the extracted data with a few simple CLI commands.
-
 ##  Use Cases
 
 Marketing: Quickly obtain company logos and contact details for potential leads and marketing campaigns.
