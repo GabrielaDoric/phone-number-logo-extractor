@@ -22,39 +22,40 @@ Branding: Access high-resolution logos for branding and design purposes.
 ## Notable Dependencies
 
 Python 3.6 (3.6.8)
+
 BeautifulSoup (for web scraping)
 
 ## Getting started
 
 ### Installation via pip
 
-In terminal navigate to a project directory:
-
+In terminal navigate to a project directory: 
 `cd .\phone-number-logo-extractor`
 
-Create virtual environment
+Create virtual environment: `python -m venv venv_name`
 
-`python -m venv venv`
-
+Activate virtual environment: 
 `venv\Scripts\activate`
 
-Install the project dependencies using pip:
+_*To deactivate virtual environment use `deactivate`_
 
+Install the project dependencies using pip:
 `pip install -r requirements.txt`
 
-Once the dependencies are installed, you can run the script:
-
+Once the dependencies are installed, you can run the script with command:
 `python extract.py {valid_website_url}`
 
+E.g.
 `python extract.py https://www.illion.com.au/`
 
 
 ### Installation via docker
 
-Build image:
-
+Build docker image:
 `docker build -t extractor-app .`
 
 Run image with url as an argument:
+`docker run extractor-app {url}`
 
+E.g.
 `docker run extractor-app https://www.illion.com.au/`
