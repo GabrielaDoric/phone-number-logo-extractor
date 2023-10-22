@@ -9,6 +9,14 @@ class Extractor_Phone(Extractor):
         self.html = html
 
     def extract(self):
+        """
+        Attempts to extract phone numbers from a web page using a method based on keyword analysis.
+
+        The function searches for phone numbers in the vicinity of specific keywords. If any phone numbers are found, they are returned. If no phone numbers are detected, the function returns None.
+
+        Returns:
+            list or None: A list of extracted phone numbers or None if no numbers are found.
+        """
         phone_numbers = self._key_words_around_number()
         if not phone_numbers:
             phone_numbers = None
@@ -16,25 +24,23 @@ class Extractor_Phone(Extractor):
         return phone_numbers
 
     def _key_words_around_number(self):
-        '''
-        This function serves the following purposes:
-        Utilizing a general phone number regular expression, it identifies potential phone numbers within a given text and
-        captures the surrounding text substrings.
-        It then iterates over a dictionary, associating each potential phone number with its respective text window.
-        Within each text window, it searches for specific keywords that strongly suggest the potential phone number is indeed
-        a valid phone number.
-        If the predefined criteria are met, the function adds the validated phone number to a list.
-        Finally, it returns a set containing the verified phone numbers extracted from the list.
-        :param html: requests.Response Object
-        :return: string
-        '''
+        """
+        Extracts potential phone numbers from a given text by employing a general phone number regular expression to identify
+        and capture numerical sequences. The function then associates each potential phone number with the surrounding text
+        context.
+
+        To validate potential phone numbers, it searches for specific keywords that indicate the likelihood of the extracted
+        sequence being an actual phone number. If predefined criteria are met, the validated phone numbers are collected.
+
+
+        Returns:
+            str: A string containing the extracted phone numbers separated by commas
+        """
 
         base_phone_regex = r'[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\.\d]*\d'  # general_phone_regex
         matches = re.findall(base_phone_regex, self.html.text)  # str(unescape(html.text)))
 
         matches = [string for string in matches if 6 <= sum(c.isdigit() for c in string) <= 15]
-        # matches = [string for string in matches if len(string)>=7]  # da maknem smeća iz htmla
-
         key_words = ['tel:', 'phone', 'Number', 'Tel:', 'Fax', 'customer-support', 'contact', 'Customer Service',
                      'Contact']
 

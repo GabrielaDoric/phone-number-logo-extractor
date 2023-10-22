@@ -16,6 +16,13 @@ class Extractor_Logo(Extractor):
         self.url = url
 
     def extract(self):
+        """
+        Attempts to extract a logo image URL from a web page using various methods.
+        The function first tries to find a logo image by searching for specific keywords in image names. If unsuccessful, it then looks for a self-referential image link. If neither of these methods yields a result, it falls back to extracting the URL of the first occurred image on the page.
+
+        Returns:
+            str: The URL of the extracted logo image, or None if no suitable image is found.
+        """
         logo_found = False
         img_logo = self._find_logo_with_keywords()
         if img_logo is not None:
@@ -30,16 +37,16 @@ class Extractor_Logo(Extractor):
         return img_logo
 
     def _find_logo_with_keywords(self):
-        '''
+        """
         Iterate through the images in the HTML.
         Check if the image name contains both the word 'logo' and a word extracted from the argument URL.
         If so, consider it a logo image and append it to a list.
         Among the picked images, prioritize images that contain the word 'color' in their name.
         If no such 'color' image is found, return the first image in the list.
-        :param html: requests.Response Object
-        :param url: string
-        :return: string
-        '''
+
+        Returns:
+            str: The URL of the selected logo image, or None if no qualifying image is found.
+        """
 
         resulting_logo = None
         company_name = utils.get_domain(self.url)
@@ -49,8 +56,6 @@ class Extractor_Logo(Extractor):
         img_tags = soup.findAll('img', {"src": True})
         for img_tag in img_tags:
             img_name = utils.get_image_name(img_tag['src'])
-            # if img_name == '':
-            #    continue
 
             if 'logo' in img_name.lower() and company_name.lower() in img_name.lower():
                 absolute_path = urllib.parse.urljoin(self.url, img_tag['src'])
@@ -67,14 +72,14 @@ class Extractor_Logo(Extractor):
         return resulting_logo
 
     def _find_logo_with_self_reference(self):
-        '''
+        """
         The function searches for HTML 'a' elements that contain 'href' attributes.
         It iterates through each found element to determine if the 'href' attribute is self-referential.
         If a self-referential 'href' attribute is found, the function saves the link to the image and returns it.
-        :param html: requests.Response Object
-        :param url: string
-        :return: string
-        '''
+
+        Returns:
+            str: The URL of the selected logo image, or None if no qualifying image is found.
+        """
         absolute_urls = []
         resulting_logo = None
 
@@ -101,13 +106,13 @@ class Extractor_Logo(Extractor):
         return resulting_logo
 
     def _find_first_occurred_logo(self):
-        '''
+        """
         This method ensures that images with 'logo' in their names are considered, with a preference given to those
         containing the word 'color' when available. If no such images exist, the first image is chosen.
-        :param html: requests.Response Object
-        :param url: string
-        :return: string
-        '''
+
+        Returns:
+            str: The URL of the selected logo image, or None if no qualifying image is found.
+        """
         found_logos = []
 
         soup = BeautifulSoup(self.html.text, 'html.parser')
@@ -135,7 +140,6 @@ def main():
 
     for url in urls:
         # for url in [urls[2]]:
-        # url = url.strip('/')
         html = utils.get_html(url.strip('/'))  # retrieve html
 
         extractor_logo = Extractor_Logo(html, url)
