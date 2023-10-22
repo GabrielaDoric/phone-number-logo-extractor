@@ -32,10 +32,10 @@ BeautifulSoup (for web scraping)
 In terminal navigate to a project directory: 
 `cd .\phone-number-logo-extractor`
 
-Create virtual environment: `python -m venv venv_name`
+Create virtual environment: `python -m venv extractor_venv`
 
 Activate virtual environment: 
-`venv\Scripts\activate`
+`extractor_venv\Scripts\activate`
 
 _*To deactivate virtual environment use `deactivate`_
 
